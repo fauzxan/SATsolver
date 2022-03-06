@@ -27,7 +27,6 @@ public class SATSolver {
         ImList<Clause> myAnswer = formula.getClauses();
         Environment env = new Environment();
         return solve(myAnswer, env);}
-
     /**
      * Takes a partial assignment of variables to values, and recursively
      * searches for a complete satisfying assignment.
@@ -54,7 +53,6 @@ public class SATSolver {
             if (yay.isEmpty()) {
                 return null;
             }
-
             // Otherwise, find the smallest clause (by number of literals)
             // If the clause has only one literal, bind its variable in the environment so that the
             // clause is satisfied.
@@ -67,7 +65,6 @@ public class SATSolver {
                 break; //hm do i break
             }
         }
-
         // Pick an arbitrary literal from the smallest clause
         // Environment newEnv = new Environment();
         Literal literal = smallest.chooseLiteral();
@@ -77,19 +74,6 @@ public class SATSolver {
         //            // substitute for the variable in all the other clauses and recursively call solve()
         if (smallest.isUnit()) {
             Environment newEnv = new Environment();
-
-//            ImList<Clause> newSubstituted = new EmptyImList<Clause>();
-//            Environment output = new Environment();
-//            newSubstituted = substitute(clauses,literal );
-//            output = solve(newSubstituted,newEnv);
-//            if (output == null){
-//                newEnv = env.putTrue(var);
-//            }
-//            else {
-//                newEnv = env.putFalse(var);
-//            }
-//            return newEnv;
-
             if (literal instanceof PosLiteral) {
                 env = env.putTrue(var);
 
@@ -102,16 +86,6 @@ public class SATSolver {
 
             return newEnv;
         }
-        //        if (smallest.isUnit()) {
-        //        Environment newEnv=new Environment();
-        //           if (literal instanceof PosLiteral)
-        //            env = env.putTrue(var));
-        //              newEnv = solve(substitute(clauses, literal), env; // true if 1 exists
-        //          else {
-        //              env = env.putFalse(var));
-        //              newEnv = solve(substitute(clauses, literal), env.putFalse(env)); //else false
-        //
-        //            return newEnv;
         else {
             Environment newEnv = new Environment();
             env = env.putTrue(var);
@@ -122,10 +96,6 @@ public class SATSolver {
             else return newEnv;
         }
     }
-
-
-
-
     /**
      * given a clause list and literal, produce a new list resulting from
      * setting that literal to true
@@ -139,13 +109,11 @@ public class SATSolver {
     private static ImList<Clause> substitute(ImList<Clause> clauses,
                                              Literal l) {
         // TODO: implement this.
-
             ImList<Clause> myFinal = new EmptyImList<>();
             Clause clause = new Clause();
             if (clauses.isEmpty()){
                 return myFinal;
             }
-
             for (Clause c : clauses) {
                 if (c != null){
                     clause = c.reduce(l); //returns the clause if literal is true or null if everything is true
@@ -154,9 +122,6 @@ public class SATSolver {
                     myFinal = myFinal.add(clause);
                 }
             }
-
             return myFinal;
-
         }
-
     }
