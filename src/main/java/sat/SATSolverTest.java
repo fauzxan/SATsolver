@@ -26,26 +26,26 @@ public class SATSolverTest{
             File cnf=new File(Path);
             FileReader cnf_r=new FileReader(cnf);
             BufferedReader reader=new BufferedReader(cnf_r);
-            Pattern pattern=Pattern.compile("-?\\d+(\\.\\d+)?");// this is to check if the given entry is numeric or not
+            Pattern pattern=Pattern.compile("-?\\d+(\\.\\d+)?");// this is to check if the given string entry is numeric or not
             String line;
 
-            while ((line= reader.readLine())!=null) {
+            while ((line= reader.readLine())!=null) {//start of loop to read the cnf file line by line
                 char zero = '0';
                 String[] line_split = line.split(" ");
                 if (line==null){
                    break;
                 }
-                if (line.length() == 0) {
+                if (line.length() == 0) {//in some files there are empty lines in between, so we want to jump to next line if we encounter an empty line
                     continue;
                 }
-                else if (!pattern.matcher(line_split[0]).matches()) {// to check if the line contains any non integer values
+                else if (!pattern.matcher(line_split[0]).matches()) {// to check if the line contains any non integer values using pattern
                     continue;
                 }
-                else if (line.charAt(line.length() - 1) == zero) {
+                else if (line.charAt(line.length() - 1) == zero) {// if the last entry in that line is a zero, we do the following(all lines that contain literals end with a zero)
                     Clause c=new Clause();
                     int i = 0;
 
-                    for (i = 0; i < line_split.length; i++) {
+                    for (i = 0; i < line_split.length; i++) {//loop runs through every literal in a given line and adds it to the clause
                         if (Integer.parseInt(line_split[i]) > 0) {
                             Literal positive = PosLiteral.make(line_split[i]);
                             c=c.add(positive);
@@ -69,10 +69,13 @@ public class SATSolverTest{
         SATSolver solver=new SATSolver();
         long started=System.nanoTime();
         //System.out.println("\nThe logic reaches this point");
-        Environment result=solver.solve(f);
+        Environment result=solver.solve(f);//this is a method from the file SATsolver.java
         long ended=System.nanoTime();
         long time_taken=ended-started;
         System.out.println("\nTime taken: "+ time_taken/Math.pow(10.0,9.0) + "s");
+        
+        //either result- (satisfiable or unsatisfiable are outputted on a textfile called "BoolAssignment.txt")
+        
         if (result==null){
             System.out.println("Unsatisfiable");
             try{
