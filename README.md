@@ -5,9 +5,9 @@ We have utilised the DPLL algorithm with backtracking and unit propagation to cr
 We reduced the run-time complexity by using the above logic of unit propagation and not utilising the brute force method. We also invoked the reduce method which sets one literal to true, if it is true, we remove the whole clause, if false we move on to the next literal. This is able to reduce the number of recursions significantly hence reducing our computational time
 
 ## Runtime report
-### File: largesat.cnf
-### Result: Satisfiable
-### Running time: 
-### Parsing process: 1.144876300 s 
-### Solving process: 1.26215120 s
-### Specification: Windows, a processor with Intel Core i7(10750MH), 16Gb ram @ 2933Mhz (not overclocked), NVIDIA GTX 1650 
+ File: largesat.cnf
+ Result: Satisfiable
+ Running time: 
+ Parsing process: 1.144876300 s 
+ Solving process: 1.26215120 s
+ Specification: Windows, a processor with Intel Core i7(10750MH), 16Gb ram @ 2933Mhz (not overclocked), NVIDIA GTX 1650 
