@@ -40,7 +40,7 @@ public class SATSolver {
      *         or null if no such environment exists.
      */
     private static Environment solve(ImList<Clause> clauses, Environment env) {
-        // TODO: implement this.
+       
 
         // If there are no clauses, the formula is trivially satisfiable;
         if (clauses.isEmpty()) {
@@ -108,7 +108,7 @@ public class SATSolver {
      */
     private static ImList<Clause> substitute(ImList<Clause> clauses,
                                              Literal l) {
-        // TODO: implement this.
+
             ImList<Clause> myFinal = new EmptyImList<>();
             Clause clause = new Clause();
             if (clauses.isEmpty()){
